@@ -1,0 +1,6 @@
+	1. mvn clean package -DskipTests
+	2. docker build -t petclinic:1.2 .
+	3. docker run -d -it --name mysqlPetclinicC -p 3306:3306 -e "MYSQL_ROOT_PASSWORD=petclinic" -e "MYSQL_USER=petclinic" -e "MYSQL_PASSWORD=petclinic" -e "MYSQL_DATABASE=petclinic" mysql:5.7
+	4. docker run --name  petclinicC --publish 8080:8080 --link mysqlPetclinicC:mysqlPetclinicC petclinic:1.2
+	5. winpty docker exec -it mysqlPetclinicC bash
+	6. mysql -uroot -p
